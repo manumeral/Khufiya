@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <script type="text/javascript">
+      function connectWebSocketServer()
+      {
+        var ws = new WebSocket("ws://localhost:8000/websocket");
+        ws.onmessage = function (evt)
+        {
+          var msg = document.getElementById("msg");
+          msg.value = msg.value + "\n" + evt.data
+          alert(msg.value)
+        };
+        ws.onclose = function()
+        {
+          var msg = document.getElementById("msg");
+          msg.value = msg.value + "\n" + "Connection closed";
+          alert(msg.value)
+        };
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="javascript:connectWebSocketServer()">Connect</button>
+    <textarea id="msg">Message</textarea>
+  </body>
+</html>

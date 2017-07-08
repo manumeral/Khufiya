@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Khufiya</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/emojione/2.2.6/assets/css/emojione.min.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./lib/css/emoji.css" >
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo right">Khufiya</a>
+        </div>
+    </nav>
+</header>
+<main id="Khufiya">
+    <div class="row">
+        <div class="col s12">
+            <div class="card horizontal">
+                <div id="chat-messages" class="card-content" v-html="chatHistory">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" v-if="joined">
+        <div class="input-field col s8">
+          <input type="text" v-model="msg" data-emojiable="true" @keyup.enter="send">
+
+        </div>
+        <div class="input-field col s4">
+            <button class="waves-effect waves-light btn" @click="send">
+                <i class="material-icons right">chat</i>
+                Send
+            </button>
+        </div>
+    </div>
+    <div class="row" v-if="!joined">
+        <div class="input-field col s8">
+            <input type="email" v-model.trim="email" placeholder="Email">
+        </div>
+        <div class="input-field col s8">
+            <input type="text" v-model.trim="username" placeholder="Username">
+        </div>
+        <div class="input-field col s4">
+            <button class="waves-effect waves-light btn" @click="join()">
+                <i class="material-icons right">done</i>
+                Join
+            </button>
+        </div>
+    </div>
+</main>
+<footer class="page-footer">
+</footer>
+<script src="https://unpkg.com/vue@2.1.3/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/emojione/2.2.6/lib/js/emojione.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="./lib/js/config.js"></script>
+<script src="./lib/js/util.js"></script>
+<script src="./lib/js/jquery.emojiarea.js"></script>
+<script src="./lib/js/emoji-picker.js"></script>
+<script>
+      $(function() {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+          emojiable_selector: '[data-emojiable=true]',
+          assetsPath: './lib/img/',
+          popupButtonClasses: 'fa fa-smile-o'
+        });
+        window.emojiPicker.discover();
+      });
+    </script>
+  </body>
+<script src="Khufiya.js"></script>
+</body>
+</html>
